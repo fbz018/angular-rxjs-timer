@@ -1,0 +1,26 @@
+.info-container label {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.measurement-container {
+  margin-top: 2rem;
+}
+
+.measurement-content {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.measurement-content td,
+.measurement-content th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.measurement-content th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #ddd;
+}

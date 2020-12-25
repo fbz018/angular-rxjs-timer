@@ -1,0 +1,43 @@
+<ng-container *ngIf="(data$ | async) as room; else loading">
+	<fieldset class="info-container">
+		<legend>
+			<h1>Patient Info</h1>
+		</legend>
+		<label> <b>Room Name:</b> {{room.id}} </label>
+		<br />
+		<label> <b>Patient Name:</b> {{room.patient.name}} </label>
+		<br />
+		<label> <b>Age:</b> {{room.patient.age}} </label>
+		<br />
+		<label> <b>DOB:</b> {{room.patient.dateOfBirth | date:'M/d/yyyy'}} </label>
+		<br />
+		<label> <b>MRN:</b> {{room.patient.mrn }} </label>
+
+		<div class="measurement-container">
+			<table class="measurement-content">
+				<tr>
+					<th>Measurement</th>
+					<th>Value</th>
+				</tr>
+				<tr [ngStyle]="{'background-color': item?.metaData?.color}"
+					*ngFor="let item of  getMeasurementsData(room.patient.deviceMappings)">
+					<td>{{ item?.id }}</td>
+					<td [ngSwitch]="item?.id">
+						<span *ngSwitchCase="'Date'">{{item?.value}}</span>
+						<span *ngSwitchCase="'Time'">{{item?.value}}</span>
+						<span *ngSwitchCase="'SPO2'">{{item?.value}}</span>
+						<span *ngSwitchCase="'BPM'">{{item?.value}}</span>
+						<span *ngSwitchCase="'PA'">{{item?.value}}</span>
+						<span *ngSwitchCase="'MODE'">{{item?.value}}</span>
+						<span *ngSwitchCase="'POLLTIME'"
+            >{{item?.value | date:'M/d/yyyy, h:mm:ss a z'}}</span>
+						<span *ngSwitchCase="'TZ'">{{item?.value}}</span>
+						<span *ngSwitchCase="'TZ_Offset'">{{item?.value}}</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
+</ng-container>
+
+<ng-template #loading>loading ...</ng-template>
